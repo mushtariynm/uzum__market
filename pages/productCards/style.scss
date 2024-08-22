@@ -1,0 +1,162 @@
+// Переменные
+$primary-color: #8e44ad;
+$secondary-color: #ffcc00;
+$text-color: #333;
+$background-color: #f5f5f5;
+$border-color: #ddd;
+$highlight-color: #ff4d00;
+
+// Миксин для кнопок
+@mixin button-style($bg-color, $text-color) {
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: $bg-color;
+    color: $text-color;
+    flex: 1;
+}
+
+
+.product-page {
+    max-width: 100%;
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+.swiper-container {
+  width: 100%;
+  height: 400px;
+}
+
+.swiper-container-thumbs {
+  height: 100px;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+  
+.product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 1px solid $border-color;
+    }
+}
+
+.product-main {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+
+    .product-main-image {
+        img {
+            width: 400px;
+            height: auto;
+        }
+    }
+
+    .product-info {
+        flex: 1;
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 5px 0;
+
+            &.product-rating {
+                font-size: 16px;
+                color: #555;
+            }
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+
+            .current-price {
+                color: $highlight-color;
+                margin-right: 10px;
+            }
+
+            .old-price {
+                text-decoration: line-through;
+                color: #777;
+                margin-right: 10px;
+            }
+
+            .original {
+                background-color: $primary-color;
+                color: #fff;
+                padding: 2px 5px;
+                border-radius: 3px;
+            }
+        }
+
+        .installment {
+            color: $highlight-color;
+            margin-bottom: 20px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+
+            button {
+                width: 30px;
+                height: 30px;
+                background-color: $border-color;
+                border: none;
+                cursor: pointer;
+            }
+
+            input {
+                width: 50px;
+                text-align: center;
+                margin: 0 10px;
+                border: 1px solid $border-color;
+            }
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+
+            .add-to-cart {
+                @include button-style($secondary-color, $text-color);
+            }
+
+            .buy-now {
+                @include button-style($primary-color, #fff);
+            }
+        }
+
+        .product-details {
+            p {
+                font-size: 14px;
+                color: #555;
+                margin: 5px 0;
+            }
+        }
+    }
+}
