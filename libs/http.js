@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let baseUrl = 'http://localhost:8080/'
+let baseUrl = "http://localhost:8080"
 
 async function getData(endpoint) {
     try {
