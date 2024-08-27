@@ -13,4 +13,17 @@ btnClose.onclick = () => {
 }
 }
 
-export{ModalAccount}
+function ModalCatalog() {
+    let modalCatalog = document.querySelector('.modal-catalog')
+    let catalogBtn = document.querySelector('.catalog')
+    catalogBtn.onclick = () => {
+        modalCatalog.style.visibility = "visible"
+        modalCatalog.style.opacity = "1"
+    }
+    // catalogBtn.ondoubleclick = () => {
+    //     modal.style.visibility = "hidden"
+    //     modal.style.opacity = "0"
+    // }
+}
+
+export{ModalAccount, ModalCatalog}

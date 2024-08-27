@@ -1,11 +1,19 @@
 import { all } from "axios";
 import { footer } from "../../components/footer";
 import { header } from "../../components/header";
+import { getData } from "../../libs/http";
+import { reload } from "../../libs/utils";
+import { createProductDisplay } from "../../components/productCard";
+import { ModalAccount } from "../../components/modal";
 
 header()
 footer()
-
-
+ModalAccount()
+// let cardId = localStorage.getItem('cardId')
+// getData(`goods?id=${cardId}`)
+// .then( res => {
+//   reload( res.data, 'product-page', createProductDisplay)
+// })
 const swiperThumbs = new Swiper('.swiper-container-thumbs', {
   direction: 'vertical',
   spaceBetween: 10,
@@ -25,3 +33,6 @@ var swiperMain = new Swiper('.swiper-container', {
       swiper: swiperThumbs,
   },
 });
+
+
+

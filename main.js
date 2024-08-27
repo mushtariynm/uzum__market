@@ -1,6 +1,6 @@
 import { footer } from "./components/footer";
 import { header } from "./components/header";
-import { ModalAccount } from "./components/modal";
+import { ModalAccount, ModalCatalog } from "./components/modal";
 import { ProductCard } from "./components/productCard";
 // import { Swiper } from "./components/swiper";
 import { getData, postData } from "./libs/http";
@@ -9,6 +9,7 @@ import { generateToken, reload, validation } from "./libs/utils";
 header()
 footer()
 ModalAccount()
+ModalCatalog()
 // Swiper()
 
 const swiper = new Swiper('.swiper', {
