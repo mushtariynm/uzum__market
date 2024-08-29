@@ -48,16 +48,20 @@ productCard.append(imageContainer, productDetails)
 
 
 productCard.onclick = () => {
+    localStorage.setItem('type', item.type)
      localStorage.setItem('cardId', item.id)
      location.href = '/pages/productCards/'
 }
+localStorage.setItem('type', item.type)
 
 
-// let furnitureArr = data.filter((item) => item.type == 'furniture')
-// let PCArr = data.filter((item) => item.type == 'PC')
-// let audioArr = data.filter((item) => item.type == 'audio')
-// let TVArr = data.filter((item) => item.type == 'TV')
-// let kitchenArr = data.filter((item) => item.type == 'kitchen')
+// movieContainer.onclick = () => {
+//     let movieName = document.querySelector('.movie__name')
+//     movieName.textContent = item.title
+//     localStorage.setItem('movieId', item.id);
+//     localStorage.setItem('backdropPath', item.backdrop_path);
+//     location.href = '/pages/movie/';
+// };
 
 
   
@@ -69,84 +73,141 @@ return productCard
 }
 
 
-function createProductDisplay() {
-    // Create main display container
-    const productDisplay = document.createElement('div');
-    productDisplay.id = 'product-display';
-    document.body.appendChild(productDisplay);
+function createProductDisplay(item) {
 
-    // Create the main image container
-    const mainContainer = document.createElement('div');
-    mainContainer.className = 'product-main';
-    
-    const mainImageDiv = document.createElement('div');
-    mainImageDiv.className = 'product-main-image';
-    
-    const mainImage = document.createElement('img');
-    mainImage.id = 'mainImage';
-    mainImage.src = 'main_image_1.jpg'; // Default main image
-    mainImage.alt = 'Main product image';
-    
-    mainImageDiv.appendChild(mainImage);
-    mainContainer.appendChild(mainImageDiv);
-    
-    // Create the thumbnail swiper container
-    const thumbsContainer = document.createElement('div');
-    thumbsContainer.className = 'swiper-container-thumbs';
-    
-    const thumbsWrapper = document.createElement('div');
-    thumbsWrapper.className = 'swiper-wrapper';
-    
-    const thumbnails = [
-        'thumb1.png',
-        'thumb2.png',
-        'thumb3.png',
-        'thumb4.png'
-    ];
+const productBox = document.createElement('div');
+const productDisplay = document.createElement('div');
+const productMain = document.createElement('div');
+const productMainImage = document.createElement('div');
+const mainImage = document.createElement('img');
+const productInfo = document.createElement('div');
+const productRating = document.createElement('div');
+const ratingText = document.createElement('p');
+const productTitle = document.createElement('h1');
+const productPrice = document.createElement('div');
+const currentPrice = document.createElement('span');
+const oldPrice = document.createElement('span');
+const numberInput = document.createElement('div');
+const minusButton = document.createElement('button');
+const quantityInput = document.createElement('input');
+const plusButton = document.createElement('button');
+const productButtons = document.createElement('div');
+const addToCartButton = document.createElement('button');
+const buyNowButton = document.createElement('button');
+const productDetails = document.createElement('div');
+const deliveryText = document.createElement('p');
+const deliverySubText = document.createElement('p');
+const paymentText = document.createElement('p');
+const paymentSubText = document.createElement('p');
+const paymentImage = document.createElement('div');
+const cardsImage = document.createElement('img');
+const returnText = document.createElement('p');
+const returnSubText = document.createElement('p');
+const cardDesc = document.createElement('div');
+const descTitle = document.createElement('p');
+const desc = document.createElement('div');
 
-    thumbnails.forEach((thumb, index) => {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide';
 
-        const img = document.createElement('img');
-        img.src = thumb;
-        img.alt = `${index + 1}`;
+productBox.className = 'product-box';
+productDisplay.className = 'product-display';
+productMain.className = 'product-main';
+productMainImage.className = 'product-main-image';
+productInfo.className = 'product-info';
+productRating.className = 'product-rating';
+ratingText.className = 'product-rating';
+productPrice.className = 'product-price';
+currentPrice.className = 'current-price';
+oldPrice.className = 'old-price';
+numberInput.className = 'number-input';
+minusButton.className = 'minus';
+quantityInput.type = 'number';
+quantityInput.className = 'quantity';
+plusButton.className = 'plus';
+productButtons.className = 'product-buttons';
+addToCartButton.className = 'add-to-cart';
+buyNowButton.className = 'buy-now';
+productDetails.className = 'product-details';
+deliveryText.className = 'box-text';
+deliverySubText.className = 'box-text-2';
+paymentText.className = 'box-text';
+paymentSubText.className = 'box-text-2';
+returnText.className = 'box-text';
+returnSubText.className = 'box-text-2';
+desc.className = 'desc';
+cardDesc.className = 'card-desc';
 
-        // Add click event to change the main image
-        img.addEventListener('click', () => {
-            mainImage.src = `main_image_${index + 1}.jpg`; // 
-        });
 
-        slide.appendChild(img);
-        thumbsWrapper.appendChild(slide);
-    });
 
-    thumbsContainer.appendChild(thumbsWrapper);
-    productDisplay.appendChild(mainContainer);
-    productDisplay.appendChild(thumbsContainer);
+mainImage.src = item.media[0];
+ratingText.textContent = `⭐ ${item.rating}`;
+productTitle.textContent = item.title;
+if (item.salePercentage) {
+    currentPrice.textContent = `${
+       Math.floor(item.price - (item.price * item.salePercentage) / 100)
+    } сум`;
 
-    
+} else if(item.salePercentage == 0){
+    currentPrice.textContent = `${item.price} сум`
+}
+oldPrice.textContent = item.price;
+minusButton.textContent = '-';
+quantityInput.value = '1';
+plusButton.textContent = '+';
+addToCartButton.textContent = 'Добавить в корзину';
+buyNowButton.textContent = 'Купить в 1 клик';
+deliveryText.textContent = 'Быстрая доставка от 1 дня';
+deliverySubText.textContent = 'В пункты выдачи Uzum или курьером';
+paymentText.textContent = 'Безопасная оплата удобным способом';
+paymentSubText.textContent = 'Оплачивайте картой, наличными или в рассрочку';
+cardsImage.src = '/cards.png';
+returnText.textContent = 'Простой и быстрый возврат';
+returnSubText.textContent = 'Примем товары в течение 10 дней и сразу вернём деньги';
+descTitle.textContent = 'Описание товара';
+desc.textContent = item.description;
 
-    const swiperThumbs = new Swiper('.swiper-container-thumbs', {
-        direction: 'vertical',
-        spaceBetween: 10,
-        slidesPerView: all,
-        freeMode: true,
-        watchSlidesVisibility: true,
-        watchSlidesProgress: true,
-      });
-      
-      var swiperMain = new Swiper('.swiper-container', {
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        thumbs: {
-            swiper: swiperThumbs,
-        },
-      });
-    return productDisplay
+
+
+productBox.appendChild(productDisplay);
+productDisplay.appendChild(productMain);
+productMain.appendChild(productMainImage);
+productMainImage.appendChild(mainImage);
+productMain.appendChild(productInfo);
+productInfo.appendChild(productRating);
+productRating.appendChild(ratingText);
+productInfo.appendChild(productTitle);
+productInfo.appendChild(productPrice);
+productPrice.appendChild(currentPrice);
+productPrice.appendChild(oldPrice);
+productInfo.appendChild(numberInput);
+numberInput.appendChild(minusButton);
+numberInput.appendChild(quantityInput);
+numberInput.appendChild(plusButton);
+productInfo.appendChild(productButtons);
+productButtons.appendChild(addToCartButton);
+productButtons.appendChild(buyNowButton);
+productInfo.appendChild(productDetails);
+productDetails.appendChild(deliveryText);
+productDetails.appendChild(deliverySubText);
+productDetails.appendChild(document.createElement('hr'));
+productDetails.appendChild(paymentText);
+productDetails.appendChild(paymentSubText);
+paymentImage.appendChild(cardsImage);
+productDetails.appendChild(paymentImage);
+productDetails.appendChild(document.createElement('hr'));
+productDetails.appendChild(returnText);
+productDetails.appendChild(returnSubText);
+productBox.appendChild(cardDesc);
+cardDesc.appendChild(descTitle);
+cardDesc.appendChild(desc);
+
+
+
+
+
+
+document.body.appendChild(productBox);
+ 
+return productBox
 }
 
 

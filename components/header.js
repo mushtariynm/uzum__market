@@ -36,7 +36,7 @@ function header() {
               <img src="/Uzum-logo.png" alt="">
             </a>
           </div>
-          <button class="catalog">
+          <button class="catalog modal-bg-catalog">
             <img src="/catalog.png" alt="">
           </button>
 

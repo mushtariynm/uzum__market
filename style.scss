@@ -728,16 +728,25 @@ footer {
 	}
 }
 .category-box {
-	margin-left: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	.cards-category {
+		display: flex;
+		flex-direction: column;
+	}
 
 	p {
 		color: #ACACAC;
 		margin: 20px 0 20px 0;
 	}
 	.category {
+		cursor: pointer;
 		font-size: 20px;
 		font-weight: 600;
 		padding-bottom: 10px;
+		color: #1f2026;
 
 		span {
 			font-size: 10px;

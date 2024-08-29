@@ -36,9 +36,6 @@ const swiper = new Swiper('.swiper', {
 
 //   let productCard = getData('goods')
 //   console.log(productCard);
-  
-  
-  
 //   Promise.all({productCard})
 //   .then(({productCard}) => {
 //     reload(productCard.data.slice(0,5), 'products-box', ProductCard)
@@ -64,10 +61,21 @@ getData('goods')
     reload(categorizedGoods.TV.slice(0,5), 'TV', ProductCard)  
     reload(categorizedGoods.kitchen.slice(0,5), 'kitchen', ProductCard)  
     reload(categorizedGoods.PC.slice(5,10), 'PC', ProductCard)  
+    
   })
   .catch(error => console.error(error))
 
+  
 
+// let type = localStorage.getItem('type')
+// getData(`goods?type=${type}`)
+// .then(res => {
+ 
+//   if(type == productsBox.getAttribute('name')) {
+//     reload(res.data.slice(0,5), 'products-box', ProductCard)
+//   }
+// })
+// .catch(error => console.error(error))
 
 
 
