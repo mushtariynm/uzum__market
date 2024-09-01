@@ -23,7 +23,7 @@ const swiper = new Swiper('.swiper', {
       prevEl: '.swiper-button-prev',
     },
     autoplay: {
-    delay: 2500,
+    delay: 3500,
     disableOnInteraction: false,
     }
   
@@ -54,8 +54,7 @@ getData('goods')
         kitchen: res.data.filter(item => item.type === 'kitchen'),
         PC: res.data.filter(item => item.type === 'PC')
       };
-      console.log(categorizedGoods);
-
+      
     reload(categorizedGoods.furniture.slice(0,5), 'furniture', ProductCard)  
     reload(categorizedGoods.audio.slice(0,5), 'audio', ProductCard)  
     reload(categorizedGoods.TV.slice(0,5), 'TV', ProductCard)  
