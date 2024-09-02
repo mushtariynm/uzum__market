@@ -433,18 +433,49 @@ footer {
 	
 }
 .product-card-like {
-  border-style: none;
-  background-color: transparent;
   position: absolute;
   top: 0;
   left: 180px;
   z-index: 100;
   cursor: pointer;
+  transition: transform 0.3s ease; 
 
+   svg {
+		width: 25px;
+		height: 25px;
+		color: gray; 
+	  }
+  .product-card-like.fill svg {
+	fill: #7000FF;
+	color: #7000FF;
+  }
 
 //   img {
 // 	width: 20px;
 // 	height: 20px;
+//   }
+
+
+// .like-icon {
+// 	position: absolute;
+// 	top: 8px;
+// 	left: 213px;
+//   background: none;
+//   border: 0;
+//   cursor: pointer;
+// 	cursor: pointer;
+// 	transition: transform 0.3s ease; 
+//   }
+  
+//   .like-icon svg {
+// 	width: 25px;
+// 	height: auto;
+// 	color: gray; 
+//   }
+  
+//   .like-icon.fill svg {
+// 	fill: #7000FF;
+// 	color: #7000FF;
 //   }
 }
 	

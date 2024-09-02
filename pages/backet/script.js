@@ -1,26 +1,23 @@
 import { footer } from "../../components/footer";
 import { header } from "../../components/header";
 import { ModalAccount } from "../../components/modal";
-import { ProductCard } from "../../components/productCard";
-import { getData } from "../../libs/http";
-import { reload } from "../../libs/utils";
-
+import { ProductsInBacket } from "../../components/productCard";
 header()
 footer()
 ModalAccount()
 
-let cardId = localStorage.getItem('cardId')
-// let cart = JSON.parse(localStorage.getItem("cart"))
-// let item = []
 
-// getData(`goods?id=${cardId}`) 
-// .then(res => {
-//     item.push(cart)
-//     reload(res.data, 'add-to-backet', ProductCard)
-//     console.log(item);
-    
-// })
-// .catch(error => console.error(error)
-// )
-let cart = [];
-localStorage.setItem("cart", JSON.stringify(cart));
+
+let backet = JSON.parse(localStorage.getItem('baccfet')) || [];
+const bag = document.querySelector('.backet')
+
+if (backet.length === 0) {
+    bag.classList.add('show');
+    bag.classList.remove('hide');
+} else {
+    bag.classList.remove('show');
+    bag.classList.add('hide');
+    ProductsInBacket(backet); 
+}
+
+
