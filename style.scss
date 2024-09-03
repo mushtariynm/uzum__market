@@ -512,8 +512,9 @@ footer {
 
 
 		.old-price {
-		  text-decoration: line-through;
-		  color: #999;
+			color: #000;
+			font-size: 15px;
+			font-weight: 600;;
 		}
 		
 		.new-price {

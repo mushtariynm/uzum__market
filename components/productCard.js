@@ -47,12 +47,14 @@ oldPrice.textContent = item.price;
 
 
 if (item.salePercentage) {
+    oldPrice.style.textDecoration =   'line-through'
+    oldPrice.style.color = 'gray'
     newPrice.textContent = `${
         Math.floor(item.price - (item.price * item.salePercentage) / 100)
     } сум`;
     
-} else if(item.salePercentage == 0){
-    newPrice.textContent = `${item.price} сум`
+} else {
+    newPrice.inert = item.price
 }
 svgLikeIcon.append(pathToFav)
 likeButton.append(svgLikeIcon);
@@ -66,16 +68,20 @@ productCard.append(imageContainer, productDetails, addCartButton)
 
 let liked = JSON.parse(localStorage.getItem('favorites')) || [];
 
+if (liked.some(like => like.id === item.id)) {
+    likeButton.classList.add('fill'); 
+}
+
 likeButton.addEventListener('click', function() {
     this.classList.toggle('fill');
 
     if (this.classList.contains('fill')) {
-        if (!liked.some(fav => fav.id === item.id)) {
+        if (!liked.some(like => like.id === item.id)) {
             liked.push(item);
         }
         localStorage.setItem('favorites', JSON.stringify(liked));
     } else {
-        liked = liked.filter(fav => fav.id !== item.id);
+        liked = liked.filter(like => like.id !== item.id);
         localStorage.setItem('favorites', JSON.stringify(liked));
     }
 });
@@ -86,19 +92,6 @@ productCard.onclick = () => {
      location.href = '/pages/productCards/'
 }
 
-// let cart = JSON.parse(localStorage.getItem("cart"))
-// addCartButton.onclick = () => {
-
-//  if(!cart.includes(item)){
-//     localStorage.setItem('cart', JSON.stringify(cart));
-//    cart.push(item)
-//  } else {
-//     cart.splice(cart.indexOf(item), 1)
-//  }
-
-// ProductsInBacket()
-
-// }
 
 let basket = JSON.parse(localStorage.getItem('basket')) || [];
         addCartButton.onclick = () => {
@@ -106,13 +99,7 @@ let basket = JSON.parse(localStorage.getItem('basket')) || [];
             localStorage.setItem('basket', JSON.stringify(basket));
         };
 
-
-
-  
-
 return productCard
-
-
 
 }
 
@@ -244,119 +231,37 @@ productBox.appendChild(cardDesc);
 cardDesc.appendChild(descTitle);
 cardDesc.appendChild(desc);
 
-
-
-
-
-
 document.body.appendChild(productBox);
- 
+plusButton.onclick = () => {
+    item.count = (item.count || 1) + 1; 
+    quantityInput.value = item.count;
+    currentPrice.textContent = `${item.price * item.count} сум`; 
+    localStorage.setItem('backet', JSON.stringify(backet)); 
+   
+    // updateCartQuantity()
+};
+
+minusButton.onclick = () => {
+    if (item.count > 1) {
+        item.count -= 1; 
+        quantityInput.value = item.count;
+        currentPrice.textContent = `${item.price * item.count} сум`; 
+    } else {
+        basket.splice(backet.indexOf(item), 1); 
+        itemsInBacket(); 
+    }
+    localStorage.setItem('backet', JSON.stringify(basket)); 
+}; 
+
+let basket = JSON.parse(localStorage.getItem('basket')) || [];
+        addToCartButton.onclick = () => {
+            basket.push(item);
+            localStorage.setItem('basket', JSON.stringify(basket));
+        };
+
 return productBox
 }
 
-function ProductsInBacket() {
-
-    
-    const cartContainer = document.createElement("div");
-  cartContainer.className = "cart-container";
-
-  // Cart items container
-  const cartItems = document.createElement("div");
-  cartItems.className = "cart-items";
-
-  // Cart item
-  const cartItem = document.createElement("div");
-  cartItem.className = "cart-item";
-
-  const productImg = document.createElement("img");
-  productImg.src = item.media[0]; 
-  productImg.alt = "Product Image";
-
-  // Item details
-  const itemDetails = document.createElement("div");
-  itemDetails.className = "item-details";
-
-  const itemInfo = document.createElement("div");
-  itemInfo.className = "item-info";
-
-  const itemDescription = document.createElement("p");
-  itemDescription.textContent = item.title;
-
-  const itemPrice = document.createElement("span");
-  itemPrice.className = "item-price";
-  itemPrice.textContent = `${
-        Math.floor(item.price - (item.price * item.salePercentage) / 100)
-    } сум`;
-
-  // Quantity controls
-  const quantityControls = document.createElement("div");
-  quantityControls.className = "quantity-controls";
-
-  const minusButton = document.createElement("button");
-  minusButton.textContent = "-";
-
-  const quantityDisplay = document.createElement("span");
-  quantityDisplay.textContent = "1";
-
-  const plusButton = document.createElement("button");
-  plusButton.textContent = "+";
-
-  quantityControls.appendChild(minusButton);
-  quantityControls.appendChild(quantityDisplay);
-  quantityControls.appendChild(plusButton);
-
-  itemInfo.appendChild(itemDescription);
-  itemInfo.appendChild(itemPrice);
-  itemInfo.appendChild(quantityControls);
-
-  // Delete button
-  const deleteBtn = document.createElement("div");
-  deleteBtn.className = "delete-btn";
-
-  const deleteImg = document.createElement("img");
-  deleteImg.src = "/delete.png"; 
-
-  const deleteText = document.createElement("span");
-  deleteText.textContent = "Удалить";
-
-  deleteBtn.appendChild(deleteImg);
-  deleteBtn.appendChild(deleteText);
-
-  itemDetails.appendChild(itemInfo);
-  itemDetails.appendChild(deleteBtn);
-
-  cartItem.appendChild(productImg);
-  cartItem.appendChild(itemDetails);
-
-  cartItems.appendChild(cartItem);
-
-  // Cart summary
-  const cartSummary = document.createElement("div");
-  cartSummary.className = "cart-summary";
-
-  const totalAmount = document.createElement("h2");
-  totalAmount.textContent = "1 650 000 сум";
-
-  const totalItems = document.createElement("p");
-  totalItems.innerHTML = 'Итого товаров: <span>14</span>';
-
-  const totalDiscount = document.createElement("p");
-  totalDiscount.innerHTML = 'Итого скидки: <span>244 000 сум</span>';
-
-  const checkoutButton = document.createElement("button");
-  checkoutButton.className = "checkout-button";
-  checkoutButton.textContent = "Оформить";
-
-  cartSummary.appendChild(totalAmount);
-  cartSummary.appendChild(totalItems);
-  cartSummary.appendChild(totalDiscount);
-  cartSummary.appendChild(checkoutButton);
-
-  cartContainer.appendChild(cartItems);
-  cartContainer.appendChild(cartSummary);
-
-  document.body.appendChild(cartContainer);
-}
 
 
-export{ProductCard, createProductDisplay, ProductsInBacket}
+export{ProductCard, createProductDisplay}

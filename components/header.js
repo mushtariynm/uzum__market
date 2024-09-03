@@ -68,7 +68,7 @@ function header() {
 
 						<div class="cart">
 							<span class="material-symbols-outlined"> shopping_bag </span>
-							<a href="/pages/backet/">Корзина</a>
+							<a href="/pages/basket/">Корзина</a>
 
 							<div class="modal__card">
 								<ul class="incard"></ul>
