@@ -36,9 +36,12 @@ function header() {
               <img src="/Uzum-logo.png" alt="">
             </a>
           </div>
-          <button class="catalog modal-bg-catalog">
-            <img src="/catalog.png" alt="">
-          </button>
+         <div class="dropdown">
+                <button class="dropbtn">
+                    <img src="" alt="">
+                    Каталог
+                </button>
+              </div>
 
           <div class="search">
 						<div class="searchQuery">
@@ -68,7 +71,7 @@ function header() {
 
 						<div class="cart">
 							<span class="material-symbols-outlined"> shopping_bag </span>
-							<a href="/pages/basket/">Корзина</a>
+							<a href="/pages/basket/">Корзина <span class="prod-quantity"></span></a>
 
 							<div class="modal__card">
 								<ul class="incard"></ul>
@@ -77,6 +80,14 @@ function header() {
 					</div>
         </div>
     </section>
+    <section class="header__third">
+				<div class="box-in-center">
+					<ul class="menu-list"></ul>
+				</div>
+			</section>
     `
+
+    let search = document.querySelector('.search')
+
 }
 export{ header }

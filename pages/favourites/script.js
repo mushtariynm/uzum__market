@@ -5,19 +5,19 @@ import { ModalAccount } from "../../components/modal";
 
 header()
 footer()
-// ModalAccount()
+ModalAccount()
 
 
 let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-const favBox = document.querySelector('.favourites')
+const favBox = document.querySelector('.favorites')
 
-if (favorites.length === 0) {
+if (favorites.length == 0) {
     favBox.classList.add('show');
     favBox.classList.remove('hide');
 } else {
     favBox.classList.remove('show');
     favBox.classList.add('hide');
-    // FavCards(fav)
+    FavCards(fav)
 }
 
 

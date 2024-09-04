@@ -55,9 +55,13 @@ function ModalCatalog(item) {
                 <img src="/Uzum-logo.png" alt="">
               </a>
             </div>
-            <button class="catalog">
-              <img src="/catalog.png" alt="">
-            </button>
+            
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img src="" alt="">
+                    Каталог
+                </button>
+              </div>
   
             <div class="search">
               <div class="searchQuery">
@@ -87,9 +91,7 @@ function ModalCatalog(item) {
   
               <div class="cart">
                 <span class="material-symbols-outlined"> shopping_bag </span>
-                <a href="/pages/backet/">Корзина</a>
-  
-                
+                <a href="/pages/basket/">Корзина</a>    
               </div>
             </div>
           </div>
@@ -113,14 +115,14 @@ function ModalCatalog(item) {
     //     elem.textContent = item.type.length
     // })
 
-    let catalogBtn = document.querySelector('.modal-bg-catalog')
+    let catalogBtn = document.querySelector('.dropdown')
     catalogBtn.onclick = () => {
         modalCatalog.style.visibility = "visible"
         modalCatalog.style.opacity = "1"
     }
     catalogBtn.ondblclick = () => {
-        modal.style.visibility = "hidden"
-        modal.style.opacity = "0"
+        modalCatalog.style.visibility = "hidden"
+        modalCatalog.style.opacity = "0"
     }
 }
 

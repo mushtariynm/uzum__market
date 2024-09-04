@@ -3,24 +3,29 @@ import { header } from "../../components/header";
 import { ModalAccount } from "../../components/modal"
 header()
 footer()
-// ModalAccount()
+ModalAccount()
 
 
 
-let basket = JSON.parse(localStorage.getItem('basket')) || [];
-const bag = document.querySelector('.backet')
-let cartCont = document.querySelector('.cart-container')
+// let basket = JSON.parse(localStorage.getItem('basket')) || [];
+// let bag = document.querySelector('.basket')
+// let cartCont = document.querySelector('.cart-container')
+// const quantityElement = document.querySelector('.prod-quantity');
+// console.log(bag);
 
-if (basket.length === 0) {
-        bag.classList.add('show');
-        bag.classList.remove('hide');
-        cartCont.style.display = 'none'
-    } else {
-            bag.classList.remove('show');
-            bag.classList.add('hide');
-            cartCont.style.display = 'flex'
-            ProductsInBasket(basket); 
-        }
+
+// if (basket.length === 0) {
+//         bag.classList.add('show');
+//         bag.classList.remove('hide');
+//         cartCont.style.display = 'none'
+//         quantityElement.style.visibility = 'hiden'
+//     } else {
+//             bag.classList.remove('show');
+//             bag.classList.add('hide');
+//             cartCont.style.display = 'flex'
+//             quantityElement.style.visibility = 'visible'
+//             ProductsInBasket(basket); 
+//         }
 
 function ProductsInBasket() {
     const basketContainer = document.querySelector('.cart-items')
@@ -92,7 +97,7 @@ function ProductsInBasket() {
         itemPrice.textContent = `${item.price * item.count} сум`; 
         localStorage.setItem('basket', JSON.stringify(basket)); 
         reloadPrices(sum); 
-        // updateCartQuantity()
+        updateCartQuantity()
     };
 
     minusButton.onclick = () => {
@@ -128,6 +133,7 @@ function ProductsInBasket() {
     
     });
     reloadPrices(basket)
+    updateCartQuantity()
     }
     
 
@@ -142,15 +148,9 @@ function reloadPrices(basket) {
 }
 
 function updateCartQuantity() {
-  // Get the span element where the cart quantity is displayed
-  const quantityElement = document.querySelector('.quantity');
-
-  // Calculate the total number of items in the cart
   const totalQuantity = basket.reduce((a, b) => a + (b.count || 1), 0);
-
-  // Update the quantity element with the total quantity
   quantityElement.innerHTML = totalQuantity;
 }
- console.log( ProductsInBasket());
+export{updateCartQuantity}
  
 

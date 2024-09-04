@@ -5,6 +5,7 @@ import { ProductCard } from "./components/productCard";
 // import { Swiper } from "./components/swiper";
 import { getData, postData } from "./libs/http";
 import { generateToken, reload, validation } from "./libs/utils";
+import { updateCartQuantity } from "./pages/basket/script";
 
 header()
 footer()

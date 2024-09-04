@@ -236,7 +236,7 @@ plusButton.onclick = () => {
     item.count = (item.count || 1) + 1; 
     quantityInput.value = item.count;
     currentPrice.textContent = `${item.price * item.count} сум`; 
-    localStorage.setItem('backet', JSON.stringify(backet)); 
+    localStorage.setItem('backet', JSON.stringify(basket)); 
    
     // updateCartQuantity()
 };

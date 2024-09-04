@@ -47,4 +47,14 @@ function generateToken() {
   }
   
 
-export{reload, validation, generateToken}
+function deBounce(fn, ms) {
+    let timeout;
+    return function(...args) {
+        clearTimeout(timeout); 
+        timeout = setTimeout(() => {
+            fn.apply(this, args); 
+        }, ms);
+    }
+  }
+
+export{reload, validation, generateToken, deBounce}
