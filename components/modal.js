@@ -1,20 +1,27 @@
 import { getData } from "../libs/http"
+import { generateToken, validation } from "../libs/utils"
 
 function ModalAccount() {
     let modal = document.querySelector('.modal__bg')
     modal.innerHTML = `
     <div class="modal__content">
      
-      <form action="">
-         
+    <button class="close"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXgiPjxsaW5lIHgxPSIxOCIgeTE9IjYiIHgyPSI2IiB5Mj0iMTgiPjwvbGluZT48bGluZSB4MT0iNiIgeTE9IjYiIHgyPSIxOCIgeTI9IjE4Ij48L2xpbmU+PC9zdmc+" alt=""></button>
+      <form class="modal-account" action="">
+
           <h1>Введите номер телефона</h1>
           <p>Отправим смс с кодом подтверждения</p>
           <div class="input__main">
-         
+         <div class="input__elem">
+      <label for="name">Ваше имя</label>
+          
+          <div  class="user-name" >
+            <input placeholder="Имя пользователя" type="text" name="name" class="user-account required">
+            </div>
           <div class="input__elem">
       <label for="name">Ваш номер телефона</label>
           
-          <div  class="phone-number" placeholder="00 000-00-00" type="tel">
+          <div  class="phone-number">
             <div class="country-number">+998</div>
             <input placeholder="00 000-00-00" type="tel" name="phone" class="numb-after required">
           </div>
@@ -27,7 +34,6 @@ function ModalAccount() {
 <p class="agreements">Авторизуясь, вы соглашаетесь c политикой <br>
   обработки персональных данных</p>
       </form>
-      <button class="close"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLXgiPjxsaW5lIHgxPSIxOCIgeTE9IjYiIHgyPSI2IiB5Mj0iMTgiPjwvbGluZT48bGluZSB4MT0iNiIgeTE9IjYiIHgyPSIxOCIgeTI9IjE4Ij48L2xpbmU+PC9zdmc+" alt=""></button>
 
   </div>
     `
@@ -42,6 +48,40 @@ btnClose.onclick = () => {
     modal.style.visibility = "hidden"
     modal.style.opacity = "0"
 }
+const form = document.querySelector(".modal-account")
+
+form.onsubmit = (e) => {
+    e.preventDefault()
+    let user = {}
+    let fn = new FormData(form)
+    let token = generateToken()
+    fn.forEach((value, key) => {
+        user[key] = value
+    })
+    
+
+    let phone = fn.get('phone')
+    
+   
+getData(`accounts?phone=${phone}`)
+.then(res => {
+    console.log(res.data);
+    
+        if(validation()){
+           
+            postData('accounts', {token, ...user})
+                .then((res) => {
+                    localStorage.setItem("token", res.data.token)
+                    localStorage.setItem("userId", res.data.userId)
+                    window.location.replace('/')
+                })
+                .catch((error) => console.log(error))
+        }
+    
+})
+.catch(error => console.log(error))
+}
+
 }
 
 function ModalCatalog(item) {

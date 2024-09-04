@@ -7,6 +7,9 @@ a {
 	text-decoration: none;
 	cursor: pointer;
 }
+ul, li{
+	list-style: none;
+}
 body{
 	font-family: Inter;
 }
@@ -581,13 +584,6 @@ footer {
     justify-content: center;
 
 
-	.close{
-		position: absolute;
-		right: 20px;
-		top: 20px;
-		background: none;
-		border: none;
-	}
 	.modal__content {
 		width: 450px;
 		height: 500px;
@@ -597,6 +593,18 @@ footer {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		position: relative;
+
+
+	.close{
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		background: none;
+		border: none;
+		background-color: #999;
+		border-radius: 50%;
+	}
 
 
 	}
@@ -642,12 +650,23 @@ footer {
 			height: 40px;
 			height: 52px;
 			padding: 0 16px;
-
 			width: 100%;
-
 			margin-bottom: 25px;
 
 			
+		}
+		.user-account {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			background-color: lightgray;
+			border-radius: 4px;
+			border-radius: 12px;
+			height: 40px;
+			height: 52px;
+			padding: 0 16px;
+			width: 100%;
+			margin-bottom: 10px;
 		}
 	
 	}
