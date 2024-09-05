@@ -17,13 +17,14 @@ if (favorites.length == 0) {
 } else {
     favBox.classList.remove('show');
     favBox.classList.add('hide');
-    FavCards(fav)
+    FavCards(favourites)
 }
 
 
 
 function FavCards() {
     const favContainer = document.querySelector('.fav-products')
+    favContainer.innerHTML = ''
     favorites.forEach((item) => {
 
     const productCard = document.createElement('div');    
@@ -93,26 +94,54 @@ if (item.salePercentage) {
     favContainer.append(productCard)
     
     
-    // let liked = JSON.parse(localStorage.getItem('favorites')) || [];
+    let liked = JSON.parse(localStorage.getItem('favorites')) || [];
     
-    // if (liked.some(like => like.id === item.id)) {
-    //     likeButton.classList.add('fill'); 
+    if (liked.some(like => like.id === item.id)) {
+        likeButton.classList.add('fill'); 
+    }
+
+    likeButton.addEventListener('click', function() {
+        this.classList.toggle('active');
+        localStorage.setItem('favorites', JSON.stringify(liked));
+        if (this.classList.contains('active')) {
+            if (!liked.some(like => like.id === item.id)) {
+                liked.push(item);
+            }
+        } else {
+            liked = liked.filter(like => like.id !== item.id);
+            localStorage.setItem('favorites', JSON.stringify(liked));
+
+            const deleteFav = this.closest('.product-card')
+            if(deleteFav){
+                deleteFav.remove()
+            }
+        }
+    });
+
+    // if (favorites.some(fav => fav.id === item.id)) {
+    //     likeIconDiv.classList.add('fill');
     // }
     
-    // likeButton.addEventListener('click', function() {
+    // likeIconDiv.addEventListener('click', function() {
     //     this.classList.toggle('fill');
     
     //     if (this.classList.contains('fill')) {
-    //         if (!liked.some(like => like.id === item.id)) {
-    //             liked.push(item);
+    //         if (!favorites.some(fav => fav.id === item.id)) {
+    //             favorites.push(item);
     //         }
-    //         localStorage.setItem('favorites', JSON.stringify(liked));
+    //         localStorage.setItem('favorites', JSON.stringify(favorites));
     //     } else {
-    //         liked = liked.filter(like => like.id !== item.id);
-    //         localStorage.setItem('favorites', JSON.stringify(liked));
+    //         favorites = favorites.filter(fav => fav.id !== item.id);
+    //         localStorage.setItem('favorites', JSON.stringify(favorites));
+    
+    //         const itemToRemove = this.closest('.item'); 
+    //         if (itemToRemove) {
+    //             itemToRemove.remove();
+    //         }
+    
+    //         updateBacketDisplay()
     //     }
     // });
-    
     productCard.onclick = () => {
         localStorage.setItem('type', item.type)
          localStorage.setItem('cardId', item.id)
@@ -127,4 +156,3 @@ let basket = JSON.parse(localStorage.getItem('backet')) || [];
             };
     })
     }
-    console.log(FavCards());

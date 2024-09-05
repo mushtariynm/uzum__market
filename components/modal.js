@@ -1,5 +1,5 @@
-import { getData } from "../libs/http"
-import { generateToken, validation } from "../libs/utils"
+import { getData, postData } from "../libs/http"
+import { generateToken} from "../libs/utils"
 
 function ModalAccount() {
     let modal = document.querySelector('.modal__bg')
@@ -67,15 +67,16 @@ getData(`accounts?phone=${phone}`)
 .then(res => {
     console.log(res.data);
     
-        if(validation()){
+        if(res.data.length === 0){
            
             postData('accounts', {token, ...user})
                 .then((res) => {
                     localStorage.setItem("token", res.data.token)
-                    localStorage.setItem("userId", res.data.userId)
                     window.location.replace('/')
                 })
                 .catch((error) => console.log(error))
+        } else {
+            alert('Пользователь уже зарегистрирован')
         }
     
 })

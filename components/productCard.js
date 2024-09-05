@@ -67,30 +67,47 @@ productCard.append(imageContainer, productDetails, addCartButton)
 
 
 let liked = JSON.parse(localStorage.getItem('favorites')) || [];
-
 if (liked.some(like => like.id === item.id)) {
-    likeButton.classList.add('fill'); 
+    likeButton.classList.add('active'); 
 }
 
-likeButton.addEventListener('click', function() {
-    this.classList.toggle('fill');
-
-    if (this.classList.contains('fill')) {
+likeButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.classList.toggle('active');
+    localStorage.setItem('favorites', JSON.stringify(liked));
+    if (this.classList.contains('active')) {
         if (!liked.some(like => like.id === item.id)) {
             liked.push(item);
         }
-        localStorage.setItem('favorites', JSON.stringify(liked));
     } else {
         liked = liked.filter(like => like.id !== item.id);
-        localStorage.setItem('favorites', JSON.stringify(liked));
     }
 });
 
-productCard.onclick = () => {
-    localStorage.setItem('type', item.type)
-     localStorage.setItem('cardId', item.id)
-     location.href = '/pages/productCards/'
-}
+// if (favorites.some(fav => fav.id === item.id)) {
+//     likeIconDiv.classList.add('fill'); 
+// }
+
+// likeIconDiv.addEventListener('click', function() {
+//     this.classList.toggle('fill'); 
+
+//     if (this.classList.contains('fill')) {
+//         if (!favorites.some(fav => fav.id === item.id)) {
+//             favorites.push(item);
+//         }
+//     } else {
+//         favorites = favorites.filter(fav => fav.id !== item.id);
+//     }
+
+//     localStorage.setItem('favorites', JSON.stringify(favorites));
+// });
+
+
+// productCard.onclick = () => {
+//     localStorage.setItem('type', item.type)
+//      localStorage.setItem('cardId', item.id)
+//      location.href = '/pages/productCards/'
+// }
 
 
 let basket = JSON.parse(localStorage.getItem('basket')) || [];

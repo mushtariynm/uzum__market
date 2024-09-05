@@ -3,8 +3,8 @@ import { header } from "./components/header";
 import { ModalAccount, ModalCatalog } from "./components/modal";
 import { ProductCard } from "./components/productCard";
 // import { Swiper } from "./components/swiper";
-import { getData, postData } from "./libs/http";
-import { generateToken, reload, validation } from "./libs/utils";
+import { getData} from "./libs/http";
+import { reload } from "./libs/utils";
 import { updateCartQuantity } from "./pages/basket/script";
 
 header()
@@ -65,6 +65,21 @@ getData('goods')
   })
   .catch(error => console.error(error))
 
+
+let token = localStorage.getItem("token")
+getData(`accounts?token=${token}`)
+.then(res => {
+    userName(res.data[0])
+})
+.catch(error => console.log(error))
+
+
+export function userName(user) {
+
+let name = document.querySelector('.user-name')
+
+name.textContent = user.name
+}
   
 
 // let type = localStorage.getItem('type')
@@ -77,41 +92,4 @@ getData('goods')
 // })
 // .catch(error => console.error(error))
 
-
-
-
-
-// const form = document.forms[0]
-
-// form.onsubmit = (e) => {
-//     e.preventDefault()
-//     let user = {}
-//     let fn = new FormData(form)
-//     let token = generateToken()
-//     fn.forEach((value, key) => {
-//         user[key] = value
-//     })
-    
-
-//     let phone = fn.get('phone')
-    
-   
-// getData(`accounts?phone=${phone}`)
-// .then(res => {
-//     console.log(res.data);
-    
-//         if(validation()){
-           
-//             postData('accounts', {token, ...user})
-//                 .then((res) => {
-//                     localStorage.setItem("token", res.data.token)
-//                     localStorage.setItem("userId", res.data.id)
-//                     window.location.replace('/')
-//                 })
-//                 .catch((error) => console.log(error))
-//         }
-    
-// })
-// .catch(error => console.log(error))
-// }
 

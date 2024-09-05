@@ -1,0 +1,87 @@
+.account-box {
+    display: flex;
+    margin-top: 60px;
+    
+    .sidebar {
+      width: 20%;
+      padding-right: 20px;
+      
+      ul {
+        list-style: none;
+      }
+      
+      li {
+        padding: 10px;
+        background-color: #eee;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        
+        &.my-data {
+          background-color: #c4c4c4;
+        }
+      }
+    }
+    
+    .content {
+      width: 80%;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      
+      h2 {
+        margin-bottom: 20px;
+      }
+      
+      .form-data {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          width: calc(50% - 10px);
+          
+          label {
+            margin-bottom: 5px;
+            font-size: 14px;
+          }
+          
+          span {
+            color: red;
+          }
+          
+          input[type="text"],
+          input[type="email"],
+          input[type="tel"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+          }
+        }
+      }
+      
+      .gender-options {
+        display: flex;
+        gap: 10px;
+      }
+      
+      .logout-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        cursor: pointer;
+
+        &:hover{
+             background-color: #ddd;
+        }
+      }
+    }
+  }
+  

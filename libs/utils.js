@@ -12,26 +12,26 @@ function reload(arr, place, Element) {
     }
     }
 
-    function validation() {
-        let regEx = {
-          phone: /^[0-9\-\+]{9,15}$/
-        }
-        let inputs = document.querySelector(".required")
-        let bool = true
-        inputs.forEach((inp) => {
-            let inpContent = inp.getAttribute("name")
-            if (regEx[inpContent].test(inp.value)) {
-                inp.classList.remove("error")
-                inp.style.border = "1px solid black"
-            } else {
-                inp.classList.add("error")
-                inp.style.border = "1px solid red"
-                bool = false
-            }
-        }
-        )
-        return bool
-      }
+    // function validation() {
+    //     let regEx = {
+    //       phone: /^[0-9\-\+]{9,15}$/
+    //     }
+    //     let inputs = document.querySelector(".required")
+    //     let bool = true
+    //     inputs.forEach((inp) => {
+    //         let inpContent = inp.getAttribute("name")
+    //         if (regEx[inpContent].test(inp.value)) {
+    //             inp.classList.remove("error")
+    //             inp.style.border = "1px solid black"
+    //         } else {
+    //             inp.classList.add("error")
+    //             inp.style.border = "1px solid red"
+    //             bool = false
+    //         }
+    //     }
+    //     )
+    //     return bool
+    //   }
     
 
 
@@ -57,4 +57,4 @@ function deBounce(fn, ms) {
     }
   }
 
-export{reload, validation, generateToken, deBounce}
+export{reload, generateToken, deBounce}

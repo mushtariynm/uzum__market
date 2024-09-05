@@ -7,9 +7,9 @@ ModalAccount()
 
 
 
-let basket = JSON.parse(localStorage.getItem('basket')) || [];
-let bag = document.querySelector('.basket')
-let cartCont = document.querySelector('.cart-container')
+const basket = JSON.parse(localStorage.getItem('basket')) || [];
+const bag = document.querySelector('.basket')
+const cartCont = document.querySelector('.cart-container')
 const quantityElement = document.querySelector('.prod-quantity');
 console.log(bag);
 
@@ -137,7 +137,7 @@ function ProductsInBasket() {
     }
     
 
-function reloadPrices(basket) {
+function reloadPrices() {
     const totalPriceSpan = document.querySelector('.total-amount');
     const totalPrice = basket.reduce((a, b) => a + (b.price * (b.count || 1)), 0);
     totalPriceSpan.textContent = totalPrice

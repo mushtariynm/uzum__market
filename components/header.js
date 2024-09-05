@@ -63,7 +63,7 @@ function header(item) {
           <div class="btn-block">
 						<div class="account">
 							<span class="material-symbols-outlined"> person </span>
-							<p data-name="">Войти</p>
+							<p class="user-name">Войти</p>
 						</div>
 
 						<div class="liked">
