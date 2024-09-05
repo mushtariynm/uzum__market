@@ -7,25 +7,25 @@ ModalAccount()
 
 
 
-// let basket = JSON.parse(localStorage.getItem('basket')) || [];
-// let bag = document.querySelector('.basket')
-// let cartCont = document.querySelector('.cart-container')
-// const quantityElement = document.querySelector('.prod-quantity');
-// console.log(bag);
+let basket = JSON.parse(localStorage.getItem('basket')) || [];
+let bag = document.querySelector('.basket')
+let cartCont = document.querySelector('.cart-container')
+const quantityElement = document.querySelector('.prod-quantity');
+console.log(bag);
 
 
-// if (basket.length === 0) {
-//         bag.classList.add('show');
-//         bag.classList.remove('hide');
-//         cartCont.style.display = 'none'
-//         quantityElement.style.visibility = 'hiden'
-//     } else {
-//             bag.classList.remove('show');
-//             bag.classList.add('hide');
-//             cartCont.style.display = 'flex'
-//             quantityElement.style.visibility = 'visible'
-//             ProductsInBasket(basket); 
-//         }
+if (basket.length === 0) {
+        bag.classList.add('show');
+        bag.classList.remove('hide');
+        cartCont.style.display = 'none'
+        quantityElement.style.visibility = 'hiden'
+    } else {
+            bag.classList.remove('show');
+            bag.classList.add('hide');
+            cartCont.style.display = 'flex'
+            quantityElement.style.visibility = 'visible'
+            ProductsInBasket(basket); 
+        }                                                                   
 
 function ProductsInBasket() {
     const basketContainer = document.querySelector('.cart-items')
