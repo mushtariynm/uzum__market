@@ -4,13 +4,14 @@ import { ModalAccount, ModalCatalog } from "./components/modal";
 import { ProductCard } from "./components/productCard";
 // import { Swiper } from "./components/swiper";
 import { getData} from "./libs/http";
-import { reload } from "./libs/utils";
-import { updateCartQuantity } from "./pages/basket/script";
+import { productsQuantity, reload, userName } from "./libs/utils";
+// import { updateCartQuantity } from "./pages/basket/script";
 
 header()
 footer()
 ModalAccount()
 ModalCatalog()
+productsQuantity()
 // Swiper()
 
 const swiper = new Swiper('.swiper', {
@@ -73,23 +74,8 @@ getData(`accounts?token=${token}`)
 })
 .catch(error => console.log(error))
 
-
-export function userName(user) {
-
-let name = document.querySelector('.user-name')
-
-name.textContent = user.name
-}
+  
   
 
-// let type = localStorage.getItem('type')
-// getData(`goods?type=${type}`)
-// .then(res => {
- 
-//   if(type == productsBox.getAttribute('name')) {
-//     reload(res.data.slice(0,5), 'products-box', ProductCard)
-//   }
-// })
-// .catch(error => console.error(error))
-
+  
 

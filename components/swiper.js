@@ -12,9 +12,7 @@ function Swiper() {
         autoplay: {
         delay: 2500,
         disableOnInteraction: false,
-        }
-      
-        
+        }  
       });
 }
 export{Swiper}

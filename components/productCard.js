@@ -1,3 +1,5 @@
+import { ProductsInBasket } from "../pages/basket/script";
+
 function ProductCard(item) {
    
     
@@ -64,57 +66,47 @@ productInfo.append(title, rating)
 productDetails.append(productInfo, priceContainer)
 addCartButton.appendChild(cartImg);
 productCard.append(imageContainer, productDetails, addCartButton)
+productCard.onclick = () => {
+    localStorage.setItem('type', item.type)
+     localStorage.setItem('cardId', item.id)
+     location.href = '/pages/productCards/'
+}
 
 
 let liked = JSON.parse(localStorage.getItem('favorites')) || [];
-if (liked.some(like => like.id === item.id)) {
-    likeButton.classList.add('active'); 
-}
-
 likeButton.addEventListener('click', function(e) {
-    e.stopPropagation();
+    e.stopPropagation(); 
     this.classList.toggle('active');
-    localStorage.setItem('favorites', JSON.stringify(liked));
+
     if (this.classList.contains('active')) {
         if (!liked.some(like => like.id === item.id)) {
-            liked.push(item);
+            liked.push({ ...item });
         }
     } else {
         liked = liked.filter(like => like.id !== item.id);
     }
+    localStorage.setItem('favorites', JSON.stringify(liked));
 });
 
-// if (favorites.some(fav => fav.id === item.id)) {
-//     likeIconDiv.classList.add('fill'); 
-// }
-
-// likeIconDiv.addEventListener('click', function() {
-//     this.classList.toggle('fill'); 
-
-//     if (this.classList.contains('fill')) {
-//         if (!favorites.some(fav => fav.id === item.id)) {
-//             favorites.push(item);
-//         }
-//     } else {
-//         favorites = favorites.filter(fav => fav.id !== item.id);
-//     }
-
-//     localStorage.setItem('favorites', JSON.stringify(favorites));
-// });
-
-
-// productCard.onclick = () => {
-//     localStorage.setItem('type', item.type)
-//      localStorage.setItem('cardId', item.id)
-//      location.href = '/pages/productCards/'
-// }
-
-
+// Логика корзины
 let basket = JSON.parse(localStorage.getItem('basket')) || [];
-        addCartButton.onclick = () => {
-            basket.push(item);
-            localStorage.setItem('basket', JSON.stringify(basket));
-        };
+
+addCartButton.addEventListener('click', function(e) {
+    e.stopPropagation(); // Останавливаем всплытие клика на карточку
+
+    // Проверяем, есть ли товар уже в корзине
+    let existingItem = basket.find(basketItem => basketItem.id === item.id);
+
+    if (existingItem) {
+        existingItem.count = (existingItem.count || 1) + 1;
+    } else {
+        const newItem = { ...item, count: 1 };
+        basket.push(newItem);
+    }
+
+    localStorage.setItem('basket', JSON.stringify(basket));
+});
+
 
 return productCard
 
@@ -253,7 +245,7 @@ plusButton.onclick = () => {
     item.count = (item.count || 1) + 1; 
     quantityInput.value = item.count;
     currentPrice.textContent = `${item.price * item.count} сум`; 
-    localStorage.setItem('backet', JSON.stringify(basket)); 
+    localStorage.setItem('basket', JSON.stringify(basket)); 
    
     // updateCartQuantity()
 };
@@ -264,10 +256,10 @@ minusButton.onclick = () => {
         quantityInput.value = item.count;
         currentPrice.textContent = `${item.price * item.count} сум`; 
     } else {
-        basket.splice(backet.indexOf(item), 1); 
-        itemsInBacket(); 
+        basket.splice(basket.indexOf(item), 1); 
+        ProductsInBasket(); 
     }
-    localStorage.setItem('backet', JSON.stringify(basket)); 
+    localStorage.setItem('basket', JSON.stringify(basket)); 
 }; 
 
 let basket = JSON.parse(localStorage.getItem('basket')) || [];

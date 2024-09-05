@@ -57,4 +57,22 @@ function deBounce(fn, ms) {
     }
   }
 
-export{reload, generateToken, deBounce}
+  function userName(user) {
+
+    let name = document.querySelector('.user-name')
+    
+    name.textContent = user.name
+    }
+    function productsQuantity(){
+        let backet = JSON.parse(localStorage.getItem('backet')) || [];
+  let numbOfGoods = document.querySelector('.prod-quantity')
+  numbOfGoods.textContent = backet.length
+    }
+    function userProfile (user) {
+        let firstName = document.getElementById('first-name')
+        firstName.value = user.name
+        
+        let number = document.getElementById('phone')
+        number.value = user.phone
+        }
+export{reload, generateToken, deBounce, userName, productsQuantity, userProfile}

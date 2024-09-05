@@ -2,7 +2,7 @@ import { all } from "axios";
 import { footer } from "../../components/footer";
 import { header } from "../../components/header";
 import { getData } from "../../libs/http";
-import { reload } from "../../libs/utils";
+import { reload, userName } from "../../libs/utils";
 import { createProductDisplay, ProductCard } from "../../components/productCard";
 import { ModalAccount } from "../../components/modal";
 
@@ -39,6 +39,13 @@ getData(`goods?type=${type}`)
 })
 .catch(error => console.error(error)
 )
+
+let token = localStorage.getItem("token")
+getData(`accounts?token=${token}`)
+.then(res => {
+  userName(res.data[0])
+})
+.catch(error => console.log(error))
 
 
 
