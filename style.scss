@@ -184,19 +184,7 @@ header {
 				vertical-align: middle;
 			}
 		}
-        // .catalog{
-        //     cursor: pointer;
-        //     border-style: none;
-        //     background-color: white;
-        //     margin: 10px;
-            
-        //     img {
-        //         width: 120px;
-        //         height: 40px;
-        //         border-radius:8px;
-        //     }
-        // }
-		
+       
 		.dropdown {
 		  position: relative;
 		  display: flex;
@@ -267,6 +255,8 @@ header {
 
 		a {
 			color: black;
+			display: flex;
+			align-items: center;
 		}
     }
 	
@@ -309,11 +299,14 @@ footer {
 
 	padding: 25px 0 0 0;
 	.footer {
-		.box-in-center {
+		.footer-box {
 			display: flex;
 			align-items: flex-start;
 			justify-content: space-between;
 			padding-top: 24px;
+			max-width: 1240px;
+	        width: 95%;
+	        margin: 0 auto;
 
 			div {
 				display: flex;
@@ -454,6 +447,7 @@ footer {
 	  position: relative;
 	  
 	  .card-img{
+		width: 100%;
 		height: 200px;
 		object-fit: cover;
 		border-radius: 5px;
@@ -466,8 +460,8 @@ footer {
 }
 .product-card-like {
   position: absolute;
-  top: 0;
-  left: 180px;
+  top: 10px;
+  right: 10px;
   z-index: 100;
   cursor: pointer;
   transition: transform 0.3s ease; 

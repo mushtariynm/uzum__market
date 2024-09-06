@@ -2,7 +2,7 @@ function footer() {
     let footer = document.querySelector('footer')
     footer.innerHTML = `
     <section class="footer">
-				<div class="box-in-center">
+				<div class="footer-box">
 					<div class="about-us">
 						<h3>О нас</h3>
 						<a href="#">Пункты выдачи</a>

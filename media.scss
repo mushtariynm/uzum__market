@@ -1,0 +1,117 @@
+/* **--------- BASE STYLES --------- ** */
+
+
+/* **--------- MEDIA QUERIES --------- ** */
+
+@media (max-width: 640px){
+    .products-box {
+	    grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* **--------- MOBILE (up to 767px) --------- ** */
+@media (max-width: 790px) {
+    .header-first {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-right: 0;
+    }
+
+    .dropdown {
+        margin-right: 0;
+    }
+
+    .search {
+        flex-direction: column;
+        margin-right: 0;
+    }
+
+    .products-box {
+        display: grid;
+	grid-template-columns: repeat(3, 1fr);
+    }
+    .account, .liked, .cart {
+        min-height: 30px;
+        min-width: 30px;
+        font-size: 12px;
+    }
+    // .product-card-like {
+    //     right: 5px; 
+    //     top: 5px;
+    // }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .footer {
+       
+        .footer-box {
+         
+        flex-direction: column;
+        // align-items: center;
+        // justify-content: center;
+        }
+    }
+}
+
+/* **--------- TABLET (768px to 1023px) --------- ** */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .header-first {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .search {
+        flex-direction: row;
+    }
+
+    .account, .liked, .cart {
+        min-height: 36px;
+        min-width: 36px;
+        font-size: 14px;
+    }
+
+    .product-card {
+        padding: 12px;
+    }
+    .products-box {
+        display: grid;
+	grid-template-columns: repeat(4, 1fr);
+    }
+    .footer {
+        .footer-box {
+            flex-direction: row;
+        }
+    }
+    .logo {
+        img {
+            height: 32px;
+            width: 180px;
+        }
+    }
+}
+
+/* **--------- DESKTOP (1024px and above) --------- ** */
+@media (min-width: 1024px) {
+    .header-first {
+        flex-direction: row;
+    }
+
+    .search {
+        flex-direction: row;
+    }
+
+    .product-card {
+        padding: 15px;
+    }
+
+    .footer {
+        .footer-box {
+            flex-direction: row;
+        }
+    }
+}
