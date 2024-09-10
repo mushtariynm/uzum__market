@@ -45,7 +45,7 @@ cartImg.src = '/backet.png';
 
 title.textContent = item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title;;
 rating.textContent = `⭐ ${item.rating}`;
-oldPrice.textContent = item.price;
+oldPrice.textContent = `${item.price} сум`;
 
 
 if (item.salePercentage) {
@@ -74,9 +74,13 @@ productCard.onclick = () => {
 
 
 let liked = JSON.parse(localStorage.getItem('favorites')) || [];
+if (liked.some(like => like.id === item.id)) {
+            likeButton.classList.add('active');
+        }
 likeButton.addEventListener('click', function(e) {
     e.stopPropagation(); 
     this.classList.toggle('active');
+    liked = JSON.parse(localStorage.getItem('favorites')) || [];
 
     if (this.classList.contains('active')) {
         if (!liked.some(like => like.id === item.id)) {
@@ -88,26 +92,20 @@ likeButton.addEventListener('click', function(e) {
     localStorage.setItem('favorites', JSON.stringify(liked));
 });
 
-// Логика корзины
-let basket = JSON.parse(localStorage.getItem('basket')) || [];
+
 
 addCartButton.addEventListener('click', function(e) {
-    e.stopPropagation(); // Останавливаем всплытие клика на карточку
-
-    // Проверяем, есть ли товар уже в корзине
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+    e.stopPropagation();
     let existingItem = basket.find(basketItem => basketItem.id === item.id);
-
     if (existingItem) {
         existingItem.count = (existingItem.count || 1) + 1;
     } else {
         const newItem = { ...item, count: 1 };
         basket.push(newItem);
     }
-
     localStorage.setItem('basket', JSON.stringify(basket));
 });
-
-
 return productCard
 
 }
@@ -247,7 +245,6 @@ plusButton.onclick = () => {
     currentPrice.textContent = `${item.price * item.count} сум`; 
     localStorage.setItem('basket', JSON.stringify(basket)); 
    
-    // updateCartQuantity()
 };
 
 minusButton.onclick = () => {
@@ -262,11 +259,32 @@ minusButton.onclick = () => {
     localStorage.setItem('basket', JSON.stringify(basket)); 
 }; 
 
-let basket = JSON.parse(localStorage.getItem('basket')) || [];
-        addToCartButton.onclick = () => {
-            basket.push(item);
-            localStorage.setItem('basket', JSON.stringify(basket));
-        };
+window.onload = () => {
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+    let existingItem = basket.find(basketItem => basketItem.id === item.id); 
+
+    if (existingItem) {
+        quantityInput.value = existingItem.count;
+    } else {
+        quantityInput.value = 1;
+    }
+};
+
+addToCartButton.addEventListener('click', function() {
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+    let existingItem = basket.find(basketItem => basketItem.id === item.id);
+
+    if (existingItem) {
+        existingItem.count = (existingItem.count || 1) + 1;
+        quantityInput.value = existingItem.count;
+    } else {
+        const newItem = { ...item, count: 1 };
+        basket.push(newItem);
+        quantityInput.value = 1; 
+    }
+
+    localStorage.setItem('basket', JSON.stringify(basket));
+});
 
 return productBox
 }

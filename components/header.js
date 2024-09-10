@@ -40,7 +40,6 @@ function header(item) {
           </div>
          <div class="dropdown">
                 <button class="dropbtn">
-                    <img src="" alt="">
                     Каталог
                 </button>
               </div>
@@ -91,76 +90,26 @@ function header(item) {
 
     const headerThird = document.querySelector('.menu-list')
    const searchInput = document.querySelector('#search')
-// Создадим контейнер для отображения результатов поиска
 const searchResultsContainer = document.createElement('li');
 searchResultsContainer.className = 'search-results';
 headerThird.appendChild(searchResultsContainer);
 
-// Добавим обработчик события input для поля поиска
 searchInput.addEventListener('input', (event) => {
-    const query = event.target.value; // Получаем введенный текст
-    const foundItems = searchItems(item, query); // Выполняем поиск
+    const query = event.target.value; 
+    const foundItems = searchItems(item, query); 
 
-    // Очистим контейнер результатов перед добавлением новых элементов
     searchResultsContainer.innerHTML = '';
 
-    // Отобразим результаты поиска
     foundItems.forEach(item => {
         const resultItem = document.createElement('div');
         resultItem.className = 'search-result-item';
-        resultItem.textContent = item.name; // Отображаем только название товара
+        resultItem.textContent = item.name; 
         searchResultsContainer.appendChild(resultItem);
     });
 });
 
 }
 
-
-// // header.js
-
-// // Импортируем функцию поиска из searcher.js
-// import { searchItems } from './searcher.js';
-
-// // Создаем массив продуктов (или получаем его из источника данных)
-// const products = [
-//     { name: "Телевизор", description: "Телевизор с диагональю 50 дюймов" },
-//     { name: "Телефон Samsung", description: "Модель Galaxy S21" },
-//     { name: "Телефон-лягушка", description: "Ретро-телефон в форме лягушки" }
-// ];
-
-// // Найдем элемент header__third
-// const headerThird = document.querySelector('.header__third');
-
-// // Создадим элемент для поля ввода поиска
-// const searchInput = document.createElement('input');
-// searchInput.type = 'text';
-// searchInput.placeholder = 'Поиск...';
-// searchInput.className = 'search-input';
-
-// // Добавим поле ввода в header__third
-// headerThird.appendChild(searchInput);
-
-// // Создадим контейнер для отображения результатов поиска
-// const searchResultsContainer = document.createElement('div');
-// searchResultsContainer.className = 'search-results';
-// headerThird.appendChild(searchResultsContainer);
-
-// // Добавим обработчик события input для поля поиска
-// searchInput.addEventListener('input', (event) => {
-//     const query = event.target.value; // Получаем введенный текст
-//     const foundItems = searchItems(products, query); // Выполняем поиск
-
-//     // Очистим контейнер результатов перед добавлением новых элементов
-//     searchResultsContainer.innerHTML = '';
-
-//     // Отобразим результаты поиска
-//     foundItems.forEach(item => {
-//         const resultItem = document.createElement('div');
-//         resultItem.className = 'search-result-item';
-//         resultItem.textContent = item.name; // Отображаем только название товара
-//         searchResultsContainer.appendChild(resultItem);
-//     });
-// });
 
 
 export{ header }

@@ -1,5 +1,5 @@
 import { getData, postData } from "../libs/http"
-import { generateToken} from "../libs/utils"
+import { generateToken, userName} from "../libs/utils"
 
 function ModalAccount() {
     let modal = document.querySelector('.modal__bg')
@@ -16,14 +16,14 @@ function ModalAccount() {
       <label for="name">Ваше имя</label>
           
           <div  class="user-name" >
-            <input placeholder="Имя пользователя" type="text" name="name" class="user-account required">
+            <input placeholder="Имя пользователя" type="text" name="name" class="user-account required" id="name">
             </div>
           <div class="input__elem">
       <label for="name">Ваш номер телефона</label>
           
           <div  class="phone-number">
             <div class="country-number">+998</div>
-            <input placeholder="00 000-00-00" type="tel" name="phone" class="numb-after required">
+            <input placeholder="00 000-00-00" type="tel" name="phone" class="numb-after required" id="phone-number">
           </div>
           
   </div>
@@ -39,10 +39,14 @@ function ModalAccount() {
     `
 let btnOpen = document.querySelector('.account')
 let btnClose = document.querySelector(".close")
-
 btnOpen.onclick = () => {
-    modal.style.visibility = "visible"
-    modal.style.opacity = "1"
+  const token = localStorage.getItem("token"); 
+  if (token) {
+      window.location.href = '/pages/userAccount/';
+   } else {
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+   }
 }
 btnClose.onclick = () => {
     modal.style.visibility = "hidden"
@@ -77,6 +81,8 @@ getData(`accounts?phone=${phone}`)
                 .catch((error) => console.log(error))
         } else {
             alert('Пользователь уже зарегистрирован')
+            localStorage.setItem("token", res.data[0].token)
+            window.location.href = '/pages/userAccount/'
         }
     
 })
@@ -158,12 +164,7 @@ function ModalCatalog(item) {
 
     let catalogBtn = document.querySelector('.dropdown')
     catalogBtn.onclick = () => {
-        modalCatalog.style.visibility = "visible"
-        modalCatalog.style.opacity = "1"
-    }
-    catalogBtn.ondblclick = () => {
-        modalCatalog.style.visibility = "hidden"
-        modalCatalog.style.opacity = "0"
+        modalCatalog.classList.toggle('visibility')
     }
 }
 

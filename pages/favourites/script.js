@@ -81,7 +81,6 @@ if (item.salePercentage) {
     } сум`;
     
 } else {
-    // newPrice.textContent = `${item.price} сум`
     newPrice.inert = item.price
 }
     svgLikeIcon.append(pathToFav)
@@ -101,73 +100,36 @@ if (item.salePercentage) {
     }
     
     let liked = JSON.parse(localStorage.getItem('favorites')) || [];
-// Проверяем, есть ли item в избранном, чтобы изначально заполнить кнопку
 if (liked.some(like => like.id === item.id)) {
     likeButton.classList.add('active'); 
 }
 
-// likeButton.addEventListener('click', function(e) {
-//     e.stopPropagation();
-//     this.classList.toggle('active');
-//     if (this.classList.contains('active')) {
-//         // Если элемент ещё не в избранном, добавляем его
-//         if (!liked.some(like => like.id === item.id)) {
-//             liked.push(item);
-//         }
-//     } else {
-//         // Если элемент был в избранном, удаляем его
-//         liked = liked.filter(like => like.id !== item.id);
-
-//         // Удаляем элемент DOM, если нужно
-//         const deleteFav = this.closest('.product-card');
-//         if (deleteFav) {
-//             deleteFav.remove();
-//         }
-//     }
-//     // Обновляем localStorage
-//     localStorage.setItem('favorites', JSON.stringify(liked));
-// });
-// let basket = JSON.parse(localStorage.getItem('basket')) || [];
-//             addCartButton.onclick = (e) => {
-//                 e.stopPropagation();
-//                 basket.push(item);
-//                 localStorage.setItem('basket', JSON.stringify(basket));
-//             };
-
-        // Обработка лайков (избранное)
-        likeButton.classList.add('active');  // Поскольку карточка уже в избранном
+        likeButton.classList.add('active');  
 
         likeButton.addEventListener('click', function(e) {
             e.stopPropagation();
             this.classList.toggle('active');
 
             if (!this.classList.contains('active')) {
-                // Убираем из избранного и удаляем карточку
                 favorites = favorites.filter(favItem => favItem.id !== item.id);
                 localStorage.setItem('favorites', JSON.stringify(favorites));
-                productCard.remove();  // Удаляем элемент с экрана
+                productCard.remove(); 
             }
         });
-
-        // Обработка добавления в корзину
         let basket = JSON.parse(localStorage.getItem('basket')) || [];
 
         addCartButton.addEventListener('click', function(e) {
             e.stopPropagation();
 
-            // Проверяем, есть ли товар уже в корзине
             let existingItem = basket.find(basketItem => basketItem.id === item.id);
 
             if (existingItem) {
-                // Увеличиваем количество, если товар уже есть в корзине
                 existingItem.count = (existingItem.count || 1) + 1;
             } else {
-                // Добавляем новый товар в корзину с количеством 1
                 const newItem = { ...item, count: 1 };
                 basket.push(newItem);
             }
 
-            // Обновляем корзину в localStorage
             localStorage.setItem('basket', JSON.stringify(basket));
         });
     })

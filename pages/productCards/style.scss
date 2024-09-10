@@ -18,45 +18,6 @@ $highlight-color: #000000;
 }
 
 
-.product-display {
-    max-width: 100%;
-    margin: 20px auto;
-    display: flex;
-    gap: 40px;
-    padding: 20px;
-}
-.swiper-container {
-  width: 100%;
-  height: 400px;
-}
-
-.swiper-container-thumbs {
-  height: 100px;
-  box-sizing: border-box;
-  padding: 10px 0;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-
-  
-.product-images {
-    display: flex;
-    flex-direction: column;
-
-    img {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        cursor: pointer;
-        border: 1px solid $border-color;
-    }
-}
-
 .product-main {
     display: flex;
     gap: 20px;
@@ -187,7 +148,7 @@ $highlight-color: #000000;
 }
 
 .card-desc {
-        padding: 20px 100px 20px 200px;
+        padding: 20px 100px 20px 100px;
 
     p{
         font-size: 20px;

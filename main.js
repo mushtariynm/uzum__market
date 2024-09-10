@@ -5,7 +5,7 @@ import { ProductCard } from "./components/productCard";
 // import { Swiper } from "./components/swiper";
 import { getData} from "./libs/http";
 import { productsQuantity, reload, userName } from "./libs/utils";
-// import { updateCartQuantity } from "./pages/basket/script";
+import { userProfile } from "./pages/userAccount/script";
 
 header()
 footer()
@@ -33,19 +33,6 @@ const swiper = new Swiper('.swiper', {
   });
 
 
-
-
-
-//   let productCard = getData('goods')
-//   console.log(productCard);
-//   Promise.all({productCard})
-//   .then(({productCard}) => {
-//     reload(productCard.data.slice(0,5), 'products-box', ProductCard)
-
-//   } )
-//   .catch(error => console.error(error)
-//   )
-
 getData('goods')
 .then(res => {
 
@@ -71,11 +58,24 @@ let token = localStorage.getItem("token")
 getData(`accounts?token=${token}`)
 .then(res => {
     userName(res.data[0])
+    userProfile(res.data[0])
+
 })
 .catch(error => console.log(error))
 
+
   
   
+
+//   let productCard = getData('goods')
+//   console.log(productCard);
+//   Promise.all({productCard})
+//   .then(({productCard}) => {
+//     reload(productCard.data.slice(0,5), 'products-box', ProductCard)
+
+//   } )
+//   .catch(error => console.error(error)
+//   )
 
   
 

@@ -59,7 +59,7 @@ function footer() {
 			</section>
 
 			<section class="footer__second">
-				<div class="box-in-center">
+				<div class="footer-box">
 					<div class="agreements">
 						<div class="confidentiality">
 							<a href="#">Соглашение о конфиденциальности</a>

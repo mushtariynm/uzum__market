@@ -64,9 +64,9 @@ function deBounce(fn, ms) {
     name.textContent = user.name
     }
     function productsQuantity(){
-        let backet = JSON.parse(localStorage.getItem('backet')) || [];
+        let basket = JSON.parse(localStorage.getItem('basket')) || [];
   let numbOfGoods = document.querySelector('.prod-quantity')
-  numbOfGoods.textContent = backet.length
+  numbOfGoods.textContent = basket.length
     }
     function userProfile (user) {
         let firstName = document.getElementById('first-name')
